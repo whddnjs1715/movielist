@@ -1,11 +1,21 @@
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Main from 'pages/main/main'
+import Wishlist from 'pages/wishlist/wishlist';
+import { RecoilRoot } from 'recoil';
 
-function App() {
+export default function App() {
   return (
     <>
-    movieList
+    <RecoilRoot>
+        <Router>
+          <div className='container'>
+            <Routes>
+              <Route path="/"  element={<Main />}/>
+              <Route path="/wishlist"  element={<Wishlist />}/>
+            </Routes>
+          </div>
+      </Router>
+    </RecoilRoot>
     </>
   );
 }
-
-export default App;
