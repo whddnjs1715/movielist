@@ -27,7 +27,8 @@ class API<T> implements Service<T> {
           headers: {
             accept: 'application/json',
             'content-type': 'application/json',
-            Authorization: `Bearer ${process.env.API_KEY}` 
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YzY0MWYzZWMwZWFkODIyYjgzNWMwYmU2NjFiODdmYSIsInN1YiI6IjY2NTc4YTYwOTkzNjU2ZmRhNzFhMTM4OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ubbO1huQMDW6IwnBAW6vQ0A5VC3MEmBa1I-7HWlGI0w`
+            // Authorization: `Bearer ${process.env.API_KEY}` 
           }
         })
           .then((res) => {

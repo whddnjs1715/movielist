@@ -1,11 +1,11 @@
+import React, { useEffect, useRef, useState } from 'react'
 import Layout from 'components/layout/layout'
-import { useEffect, useRef, useState } from 'react'
 import API from 'service/api'
-import Pagination from 'components/pagination/pagination';
 import { MovieListDataModel } from 'model/pages/main/main'
-import MovieList from 'components/movielist/movielist'
 import { wishMoviesState } from 'atom/atom';
 import { useRecoilState } from 'recoil';
+const MovieList = React.lazy(() => import('components/movielist/movielist'));
+const Pagination = React.lazy(() => import('components/pagination/pagination'));
 
 export default function Main() {
     // [Val] Popular movie list

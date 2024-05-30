@@ -2,3 +2,5 @@
 
 ### 01 `yarn `
 ### 02 `yarn start`
+
+### click `https://movielist-coral.vercel.app/`
