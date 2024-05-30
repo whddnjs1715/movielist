@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, Suspense } from 'react'
 import Layout from 'components/layout/layout'
 import API from 'service/api'
 import { MovieListDataModel } from 'model/pages/main/main'
@@ -60,8 +60,10 @@ export default function Main() {
     return (
         <>
             <Layout>
-                <MovieList movieList={movieList} onClickWishList={onClickAddWishListMovie} pageName='main'/>
-                <Pagination currentPage={currentPage} totalPage={totalPage} onChangePage={onChangePage}/>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <MovieList movieList={movieList} onClickWishList={onClickAddWishListMovie} pageName='main'/>
+                    <Pagination currentPage={currentPage} totalPage={totalPage} onChangePage={onChangePage}/>
+                </Suspense>
             </Layout>
         </>
     )
