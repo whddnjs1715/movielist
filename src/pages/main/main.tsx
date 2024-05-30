@@ -14,17 +14,14 @@ export default function Main() {
     const [currentPage, setCurrentPage] = useState<number>(1)
     // [Val] Total page number
     const [totalPage, setTotalPage] = useState<number>(1)
-    // [Val]
+    // [Val] wish movie list
     const [wishMovieList, setMovieWishList] = useRecoilState(wishMoviesState);
 
     // [func] Add wish list movie
     const onClickAddWishListMovie = (movie: MovieListDataModel) => {
-        const isMovieInWishlist = wishMovieList.some(item => item.id === movie.id);
-        if (!isMovieInWishlist) {
-            setMovieWishList(prevMovies => [...prevMovies, movie]);
-        } else {
-            alert(`"${movie.title}is alreadt in wishlist`);
-        }
+        setMovieWishList(prevMovies => [...prevMovies, movie]);
+        const updatedWishlist = [...wishMovieList, movie];
+        localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
     };   
 
     // [func] Change Page 
@@ -36,7 +33,7 @@ export default function Main() {
     const getPopMovieListAPI = useRef(
         new API(`https://api.themoviedb.org/3/movie/popular`, 'GET', {
             success: (res) => {
-                console.log(res)
+                // console.log(res)
                 setMovieList(res.results ?? [])
                 setTotalPage(res.total_pages ?? 0)
                 setCurrentPage(res.page ?? 1)
@@ -51,6 +48,14 @@ export default function Main() {
         getPopMovieListAPI.current.setUrl(`https://api.themoviedb.org/3/movie/popular?page=${currentPage}`)
         getPopMovieListAPI.current.call()
     }, [currentPage])
+
+    useEffect(() => {
+        if(wishMovieList.length > 0) return
+        const storedWishlist = localStorage.getItem('wishlist');
+        if (storedWishlist) {
+            setMovieWishList(JSON.parse(storedWishlist));
+        }        
+    }, [])
 
     return (
         <>

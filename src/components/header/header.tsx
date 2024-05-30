@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 export default function Header() {
   return (
-    <Navbar>
+    <NavbarLayout>
       <NavContainer>
-        <Logo>
+        <LogoContainer>
           <Link to="/" 
             style={{ 
                 textDecoration: 'none', 
@@ -13,7 +13,7 @@ export default function Header() {
                 fontSize: '24px',
                 fontWeight: 'bold',
             }}>MyApp</Link>
-        </Logo>
+        </LogoContainer>
         <NavLinkList>
           <NavLinkItem>
             <NavLink to="/">Home</NavLink>
@@ -23,11 +23,11 @@ export default function Header() {
           </NavLinkItem>
         </NavLinkList>
       </NavContainer>
-    </Navbar>
+    </NavbarLayout>
   );
 }
 
-const Navbar = styled.nav`
+const NavbarLayout = styled.nav`
     background-color: #f8f8f8;
     padding: 10px 20px;
 `;
@@ -38,7 +38,7 @@ const NavContainer = styled.div`
     justify-content: space-between;
 `;
 
-const Logo = styled.div`
+const LogoContainer = styled.div`
     color: #333;
     font-size: 1.5rem;
 `;

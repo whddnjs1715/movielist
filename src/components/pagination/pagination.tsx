@@ -2,10 +2,17 @@ import { useMemo } from 'react'
 import styled from 'styled-components';
 import { PaginationDataModel } from 'model/components/pagination/pagination'
 
+interface PageButtonProps {
+    isActive?: boolean;
+}
+
 export default function Pagination({ currentPage, totalPage, onChangePage }: PaginationDataModel) {
+    // [val] max page
     const calMaxPage = Math.ceil(totalPage / 20)
+    // [val] exception max page 
     const maxPage = calMaxPage === 0 ? 1 : calMaxPage
   
+    // [func] Page calculate
     const pages = useMemo(() => {
       const start = Math.floor((currentPage - 1) / 10) * 10 + 1
   
@@ -40,10 +47,15 @@ export default function Pagination({ currentPage, totalPage, onChangePage }: Pag
                     </PageButton>
                 </ButtonWrapper>
                 <PagesWrapper>
-                    {pages.map((item) => {
+                    {pages.map((value, index) => {
                         return (
-                            <PageButton key={item} type='button' onClick={() => onClickPage(item)}>
-                                {item}
+                            <PageButton 
+                                key={value} 
+                                type='button' 
+                                onClick={() => onClickPage(value)} 
+                                isActive={value === currentPage}
+                            >
+                                {value}
                             </PageButton>
                         )
                     })}
@@ -74,13 +86,15 @@ const PagesWrapper = styled.div`
     gap: 5px;
 `;
 
-const PageButton = styled.button`
+const PageButton = styled.button<PageButtonProps>`
     color: #000;
     border: none;
     border-radius: 3px;
     padding: 5px 10px;
     cursor: pointer;
+    background-color: ${({ isActive }) => (isActive ? '#0056b3' : 'transparent')};
+    color: ${({ isActive }) => (isActive ? '#fff' : '#000')};
     &:hover {
-        background-color: #0056b3;
+        background-color: ${({ isActive }) => (isActive ? '#004494' : '#e0e0e0')};
     }
 `;

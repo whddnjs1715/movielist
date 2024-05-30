@@ -10,7 +10,6 @@ interface MovieListProps {
 }
 
 export default function MovieList({ movieList, onClickWishList, pageName }: MovieListProps) {
-
     const [wishMovieList, setMovieWishList] = useRecoilState(wishMoviesState);
 
     return (
@@ -23,9 +22,9 @@ export default function MovieList({ movieList, onClickWishList, pageName }: Movi
                         ) : (
                             <MovieListDefaultImage />
                         )}
-                        <StyledMovieTitle>{movie.title}</StyledMovieTitle>
+                        <MovieTitleBox>{movie.title}</MovieTitleBox>
                         { !wishMovieList.some(item => item.id === movie.id && pageName !== 'wishlist') 
-                          && <StyledLikeButton onClick={() => onClickWishList(movie)}>{pageName !== 'wishlist' ? 'wish' : 'delete'}</StyledLikeButton>}
+                          && <MovieLikeButton onClick={() => onClickWishList(movie)}>{pageName !== 'wishlist' ? 'wish' : 'delete'}</MovieLikeButton>}
                     </MovieListMovieItem>
                 ))}
                 {(!movieList || movieList.length < 1 ) && <>No data</>}
@@ -46,11 +45,11 @@ const MovieListMovieItem = styled.div`
   align-items: center;
 `;
 
-const StyledMovieTitle = styled.h3`
+const MovieTitleBox = styled.h3`
   margin: 10px 0;
 `;
 
-const StyledLikeButton = styled.button`;
+const MovieLikeButton = styled.button`;
   cursor: pointer;
   background-color: #fff
 `;

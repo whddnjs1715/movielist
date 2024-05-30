@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export default function Footer() {
@@ -7,7 +6,7 @@ export default function Footer() {
         <div>
           <ContentContainer>
             <a>
-              <Title>Joungwon_Kim Page</Title>
+              <TitleBox>Joungwon_Kim Page</TitleBox>
             </a>
           </ContentContainer>
         </div>
@@ -24,17 +23,8 @@ const ContentContainer = styled.div`
   text-align: center;
 `;
 
-const Title = styled.span`
+const TitleBox = styled.span`
   font-size: 24px;
   font-weight: bold;
   color: #333;
-`;
-
-const SocialLinks = styled.span`
-  margin-top: 12px;
-
-  a {
-    color: #555;
-    margin-left: 12px;
-  }
-`;  
+`; 

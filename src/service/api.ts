@@ -19,7 +19,6 @@ class API<T> implements Service<T> {
     }    
 
     async call() {
-      console.log('this.config.data ', this.config.data)
         await axios({
           url: this.url,
           method: this.method,
